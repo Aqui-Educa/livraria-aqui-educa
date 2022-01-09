@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Cadastro de categoria
+            Cadastro de Idioma
         </title>     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,27 +9,23 @@
         
     <body>
 
-        <h1>Cadastro de categoria</h1>
+        <h1>Cadastro de idioma</h1>
         <br>
 
-        ID:
+        Id:
         <br>
         <input type="text" id="id">
         <br><br>
 
-        Selecione a categoria:
+        Idioma:
         <br>
-        <select class="form-control" id="tipo_categoria">
-            <option>academico</option>
-            <option>romance</option>
-            <option>espirita</option>
-        </select>
+        <input type="text" id="idioma">
         <br><br>
 
-        
+       
         <button onclick="inserir()">Salvar</button>
 
-        <a href="categoria.html">
+        <a href="idiomas.html">
             <button>Voltar</button>
         </a>        
 
@@ -48,19 +44,18 @@
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
         var id = document.getElementById("id").value
-        var tipo_categoria = document.getElementById("tipo_categoria").value
+        var idioma = document.getElementById("idioma").value
         
-
         //Construindo o JSON que será
         //enviado para a API
         var json = {
             'id': id,
-            'tipo_categoria': tipo_categoria
+            'idioma': idioma
         }
 
         //Enviando para a API o json 
         //construído na etapa anterior
-        fetch('http://127.0.0.1:5000/categoria/inserir',
+        fetch('http://127.0.0.1:5000/idioma/inserir',
         {
             headers: {
                 'Accept': 'application/json',
@@ -74,7 +69,7 @@
             res.json()
                 .then(data => {
                     console.log(data)
-                    window.open("categoria.html");
+                    window.open("idiomas.html");
                 })
         })
         .catch(function(res){ console.log(res) })

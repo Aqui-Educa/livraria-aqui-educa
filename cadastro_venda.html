@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Cadastro de categoria
+            Cadastro de venda
         </title>     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,27 +9,28 @@
         
     <body>
 
-        <h1>Cadastro de categoria</h1>
+        <h1>Cadastro de venda</h1>
         <br>
 
-        ID:
+        Id Titulo:
         <br>
-        <input type="text" id="id">
+        <input type="text" id="idTitulo">
         <br><br>
 
-        Selecione a categoria:
+        Quantidade:
         <br>
-        <select class="form-control" id="tipo_categoria">
-            <option>academico</option>
-            <option>romance</option>
-            <option>espirita</option>
-        </select>
+        <input type="text" id="quantidade">
+        <br><br>
+
+        Valor:
+        <br>
+        <input type="text" id="valor">
         <br><br>
 
         
         <button onclick="inserir()">Salvar</button>
 
-        <a href="categoria.html">
+        <a href="vendas.html">
             <button>Voltar</button>
         </a>        
 
@@ -47,20 +48,22 @@
 
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
-        var id = document.getElementById("id").value
-        var tipo_categoria = document.getElementById("tipo_categoria").value
-        
+        var idTitulo = document.getElementById("idTitulo").value
+        var quantidade = document.getElementById("quantidade").value
+        var valor = document.getElementById("valor").value
+       
 
         //Construindo o JSON que será
         //enviado para a API
         var json = {
-            'id': id,
-            'tipo_categoria': tipo_categoria
+            'idTitulo': idTitulo,
+            'quantidade': quantidade,
+            'valor': valor
         }
 
         //Enviando para a API o json 
         //construído na etapa anterior
-        fetch('http://127.0.0.1:5000/categoria/inserir',
+        fetch('http://127.0.0.1:5000/venda/inserir',
         {
             headers: {
                 'Accept': 'application/json',
@@ -74,7 +77,7 @@
             res.json()
                 .then(data => {
                     console.log(data)
-                    window.open("categoria.html");
+                    window.open("vendas.html");
                 })
         })
         .catch(function(res){ console.log(res) })

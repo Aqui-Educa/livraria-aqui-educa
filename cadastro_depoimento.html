@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Cadastro de categoria
+            Cadastro de depoimento
         </title>     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,27 +9,22 @@
         
     <body>
 
-        <h1>Cadastro de categoria</h1>
+        <h1>Cadastro de depoimento</h1>
         <br>
 
-        ID:
+        Nome:
         <br>
-        <input type="text" id="id">
+        <input type="text" id="nome">
         <br><br>
 
-        Selecione a categoria:
+        Depoimento:
         <br>
-        <select class="form-control" id="tipo_categoria">
-            <option>academico</option>
-            <option>romance</option>
-            <option>espirita</option>
-        </select>
+        <input type="text" id="depoimento">
         <br><br>
 
-        
         <button onclick="inserir()">Salvar</button>
 
-        <a href="categoria.html">
+        <a href="depoimentos.html">
             <button>Voltar</button>
         </a>        
 
@@ -47,20 +42,19 @@
 
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
-        var id = document.getElementById("id").value
-        var tipo_categoria = document.getElementById("tipo_categoria").value
+        var nome = document.getElementById("nome").value
+        var depoimento = document.getElementById("depoimento").value
         
-
         //Construindo o JSON que será
         //enviado para a API
         var json = {
-            'id': id,
-            'tipo_categoria': tipo_categoria
+            'nome': nome,
+            'depoimento': depoimento
         }
 
         //Enviando para a API o json 
         //construído na etapa anterior
-        fetch('http://127.0.0.1:5000/categoria/inserir',
+        fetch('http://127.0.0.1:5000/depoimento/inserir',
         {
             headers: {
                 'Accept': 'application/json',
@@ -74,7 +68,7 @@
             res.json()
                 .then(data => {
                     console.log(data)
-                    window.open("categoria.html");
+                    window.open("depoimentos.html");
                 })
         })
         .catch(function(res){ console.log(res) })

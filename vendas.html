@@ -2,7 +2,7 @@
 
 <head>
     <title>
-        Categoria
+        Lista de vendas
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -23,18 +23,18 @@
                     <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Categorias</a>
+                    <a class="nav-link" href="#">Vendas</a>
                 </li>
             </ul>
         </div>
     </nav>
 
 
-    <h1>Categoria</h1>
+    <h1>Vendas</h1>
     <br>
 
     <div style="text-align: end; margin-right: 50px;">
-        <a href="cadastro_categoria.html">
+        <a href="cadastro_venda.html">
             <img src="images/insert_icon.png" width="30">
         </a>
     </div>
@@ -44,8 +44,9 @@
     <table id="table" class="table">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Categoria</th>
+                <th scope="col">Id Titulo</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -67,7 +68,7 @@
 
         //Enviando para a API o json 
         //construído na etapa anterior
-        fetch('http://127.0.0.1:5000/categoria/listar',
+        fetch('http://127.0.0.1:5000/venda/listar',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -89,15 +90,16 @@
     function inserirLinhas(lista) {
         for (var i = 0; i < lista.length; i++) {
             var row = $('<tr/>');
-            row.append($('<td/>').html(lista[i]['id']));
-            row.append($('<td/>').html(lista[i]['tipo_categoria']));
+            row.append($('<td/>').html(lista[i]['idTitulo']));
+            row.append($('<td/>').html(lista[i]['quantidade']));
+            row.append($('<td/>').html(lista[i]['valor']));
             row.append($('<td/>').html('<img src="images/delete_icon.png" width="30" onclick="deletar(' + i + ')" style="cursor: pointer;">'));
             $('#table').append(row);
         }
     }
 
     function deletar(nroLinha) {
-        fetch('http://127.0.0.1:5000/categoria/deletar/' + String(nroLinha),
+        fetch('http://127.0.0.1:5000/venda/deletar/' + String(nroLinha),
             {
                 headers: {
                     'Accept': 'application/json',
