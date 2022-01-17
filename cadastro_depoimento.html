@@ -1,34 +1,72 @@
 <html>
-    <head>
-        <title>
-            Cadastro de depoimento
-        </title>     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-        
-    <body>
 
-        <h1>Cadastro de depoimento</h1>
-        <br>
+<head>
+    <title>
+        Cadastro de depoimento
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        Nome:
+<body>
+    <header id="header">
+        <h1 id="logo">Aqui Educa</h1>
+
+        <nav id="nav">
+            <ul id="menu">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="clientes.html">Clientes</a>
+                </li>
+                <li>
+                    <a href="categoria.html">Categoria</a>
+                </li>
+                <li>
+                    <a href="editoras.html">Editoras</a>
+                </li>
+                <li>
+                    <a href="idiomas.html">Idiomas</a>
+                </li>
+                <li>
+                    <a href="vendas.html">Vendas</a>
+                </li>
+                <li>
+                    <a href="depoimentos.html">Depoimentos</a>
+                </li>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Cadastro de Depoimento</h1>
+    <br>
+
+    <div id="form">
+        <label for="nome">Nome</label>
         <br>
         <input type="text" id="nome">
         <br><br>
 
-        Depoimento:
+        <label for="depoimento">Depoimento</label>
         <br>
-        <input type="text" id="depoimento">
+        <textarea rows="6" style="width: 200px; border-radius: 5px; border-color:#202124; border-width: 2px;" id="experiencia" name="experiencia"></textarea>
         <br><br>
+    </div>
 
-        <button onclick="inserir()">Salvar</button>
+    <div id="botao">
+        <button onclick=" inserir()"><strong> SALVAR</strong></button>
 
-        <a href="depoimentos.html">
-            <button>Voltar</button>
-        </a>        
+        <a href="vendas.html">
+            <button> <strong> VOLTAR</strong></button>
+        </a>
+    </div>
 
-    </body>
+
+</body>
+
 </html>
 
 <!-- 
@@ -38,13 +76,13 @@
 -->
 
 <script language="javascript">
-    function inserir(){
+    function inserir() {
 
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
         var nome = document.getElementById("nome").value
         var depoimento = document.getElementById("depoimento").value
-        
+
         //Construindo o JSON que será
         //enviado para a API
         var json = {
@@ -55,22 +93,22 @@
         //Enviando para a API o json 
         //construído na etapa anterior
         fetch('http://127.0.0.1:5000/depoimento/inserir',
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: "POST",
-            body: JSON.stringify(json)
-        })
-        .then(function(res){ 
-            res.json()
-                .then(data => {
-                    console.log(data)
-                    window.open("depoimentos.html");
-                })
-        })
-        .catch(function(res){ console.log(res) })
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                method: "POST",
+                body: JSON.stringify(json)
+            })
+            .then(function (res) {
+                res.json()
+                    .then(data => {
+                        console.log(data)
+                        window.open("depoimentos.html");
+                    })
+            })
+            .catch(function (res) { console.log(res) })
     }
 </script>

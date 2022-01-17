@@ -1,40 +1,80 @@
 <html>
-    <head>
-        <title>
-            Cadastro de venda
-        </title>     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-        
-    <body>
 
-        <h1>Cadastro de venda</h1>
-        <br>
+<head>
+    <title>
+        Cadastro de Venda
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        Id Titulo:
+<body>
+
+    <header id="header">
+        <h1 id="logo">Aqui Educa</h1>
+
+        <nav id="nav">
+            <ul id="menu">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="clientes.html">Clientes</a>
+                </li>
+                <li>
+                    <a href="categoria.html">Categoria</a>
+                </li>
+                <li>
+                    <a href="editoras.html">Editoras</a>
+                </li>
+                <li>
+                    <a href="idiomas.html">Idiomas</a>
+                </li>
+                <li>
+                    <a href="vendas.html">Vendas</a>
+                </li>
+                <li>
+                    <a href="depoimentos.html">Depoimentos</a>
+                </li>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Cadastro de Venda</h1>
+    <br>
+
+    <div id="form">
+        <label for="id titulo">Id Título</label>
         <br>
         <input type="text" id="idTitulo">
         <br><br>
 
-        Quantidade:
+        <label for="quantidade">Quantidade</label>
         <br>
         <input type="text" id="quantidade">
         <br><br>
 
-        Valor:
+        <label for="valor">Valor</label>
         <br>
         <input type="text" id="valor">
         <br><br>
+    </div>
 
-        
-        <button onclick="inserir()">Salvar</button>
+    <div id="botao">
+        <button onclick=" inserir()"><strong> SALVAR</strong></button>
 
         <a href="vendas.html">
-            <button>Voltar</button>
-        </a>        
+            <button> <strong> VOLTAR</strong></button>
+        </a>
+    </div>
 
-    </body>
+
+
+
+</body>
+
 </html>
 
 <!-- 
@@ -44,14 +84,14 @@
 -->
 
 <script language="javascript">
-    function inserir(){
+    function inserir() {
 
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
         var idTitulo = document.getElementById("idTitulo").value
         var quantidade = document.getElementById("quantidade").value
         var valor = document.getElementById("valor").value
-       
+
 
         //Construindo o JSON que será
         //enviado para a API
@@ -64,22 +104,22 @@
         //Enviando para a API o json 
         //construído na etapa anterior
         fetch('http://127.0.0.1:5000/venda/inserir',
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: "POST",
-            body: JSON.stringify(json)
-        })
-        .then(function(res){ 
-            res.json()
-                .then(data => {
-                    console.log(data)
-                    window.open("vendas.html");
-                })
-        })
-        .catch(function(res){ console.log(res) })
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                method: "POST",
+                body: JSON.stringify(json)
+            })
+            .then(function (res) {
+                res.json()
+                    .then(data => {
+                        console.log(data)
+                        window.open("vendas.html");
+                    })
+            })
+            .catch(function (res) { console.log(res) })
     }
 </script>

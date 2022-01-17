@@ -1,49 +1,88 @@
 <html>
-    <head>
-        <title>
-            Cadastro de editora
-        </title>     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-        
-    <body>
 
-        <h1>Cadastro de editora</h1>
-        <br>
+<head>
+    <title>
+        Cadastro de editora
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        Id:
+<body>
+
+    <header id="header">
+        <h1 id="logo">Aqui Educa</h1>
+
+        <nav id="nav">
+            <ul id="menu">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="clientes.html">Clientes</a>
+                </li>
+                <li>
+                    <a href="categoria.html">Categoria</a>
+                </li>
+                <li>
+                    <a href="editoras.html">Editoras</a>
+                </li>
+                <li>
+                    <a href="idiomas.html">Idiomas</a>
+                </li>
+                <li>
+                    <a href="vendas.html">Vendas</a>
+                </li>
+                <li>
+                    <a href="depoimentos.html">Depoimentos</a>
+                </li>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Cadastro de Editora</h1>
+    <br>
+
+    <div id="form">
+        <label for="id">Id</label>
         <br>
         <input type="text" id="id">
         <br><br>
 
-        Nome:
+        <label for="nome">Nome</label>
         <br>
         <input type="text" id="nome">
         <br><br>
 
-        Fundacao:
+        <label for="fundacao">Fundação</label>
         <br>
         <input type="text" id="fundacao">
         <br><br>
 
-        Estado:
+        <label for="estado">Estado</label>
         <br>
         <input type="text" id="estado">
         <br><br>
 
-        Pais:
+        <label for="pais">País</label>
         <br>
         <input type="text" id="pais">
         <br><br>
+    </div>
 
-        <button onclick="inserir()">Salvar</button>
+    <div id="botao">
+        <button onclick=" inserir()"><strong> SALVAR</strong></button>
 
-        <a href="editoras.html">
-            <button>Voltar</button>
-        </a>        
+        <a href="vendas.html">
+            <button> <strong> VOLTAR</strong></button>
+        </a>
+        </a>
+    </div>
 
-    </body>
+</body>
+
 </html>
 
 <!-- 
@@ -53,7 +92,7 @@
 -->
 
 <script language="javascript">
-    function inserir(){
+    function inserir() {
 
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
@@ -76,22 +115,22 @@
         //Enviando para a API o json 
         //construído na etapa anterior
         fetch('http://127.0.0.1:5000/editora/inserir',
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: "POST",
-            body: JSON.stringify(json)
-        })
-        .then(function(res){ 
-            res.json()
-                .then(data => {
-                    console.log(data)
-                    window.open("editoras.html");
-                })
-        })
-        .catch(function(res){ console.log(res) })
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                method: "POST",
+                body: JSON.stringify(json)
+            })
+            .then(function (res) {
+                res.json()
+                    .then(data => {
+                        console.log(data)
+                        window.open("editoras.html");
+                    })
+            })
+            .catch(function (res) { console.log(res) })
     }
 </script>

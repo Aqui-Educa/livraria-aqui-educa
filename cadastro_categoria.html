@@ -1,39 +1,77 @@
 <html>
-    <head>
-        <title>
-            Cadastro de categoria
-        </title>     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-        
-    <body>
 
-        <h1>Cadastro de categoria</h1>
-        <br>
+<head>
+    <title>
+        Cadastro de categoria
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        ID:
+<body>
+    <header id="header">
+        <h1 id="logo">Aqui Educa</h1>
+
+        <nav id="nav">
+            <ul id="menu">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="clientes.html">Clientes</a>
+                </li>
+                <li>
+                    <a href="categoria.html">Categoria</a>
+                </li>
+                <li>
+                    <a href="editoras.html">Editoras</a>
+                </li>
+                <li>
+                    <a href="idiomas.html">Idiomas</a>
+                </li>
+                <li>
+                    <a href="vendas.html">Vendas</a>
+                </li>
+                <li>
+                    <a href="depoimentos.html">Depoimentos</a>
+                </li>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <h1 style="text-align: center; 
+    font-family: sans-serif; padding: 10;">Cadastro de Categoria</h1>
+    <br>
+
+    <div id="form">
+        <label for="id">Id</label>
         <br>
         <input type="text" id="id">
         <br><br>
 
-        Selecione a categoria:
-        <br>
+
+        <label for="selecione" style="padding: 5px;">Categorias:</label>
+
         <select class="form-control" id="tipo_categoria">
-            <option>academico</option>
+            <option>acadêmico</option>
             <option>romance</option>
-            <option>espirita</option>
+            <option>espírita</option>
         </select>
         <br><br>
+    </div>
 
-        
-        <button onclick="inserir()">Salvar</button>
+    <div id="botao">
+        <button onclick=" inserir()"><strong> SALVAR</strong></button>
 
-        <a href="categoria.html">
-            <button>Voltar</button>
-        </a>        
+        <a href="vendas.html">
+            <button> <strong> VOLTAR</strong></button>
+        </a>
+    </div>
 
-    </body>
+</body>
+
 </html>
 
 <!-- 
@@ -43,13 +81,13 @@
 -->
 
 <script language="javascript">
-    function inserir(){
+    function inserir() {
 
         //Criando variáveis com os dados obtidos
         //nos campos do formulário no HTML
         var id = document.getElementById("id").value
         var tipo_categoria = document.getElementById("tipo_categoria").value
-        
+
 
         //Construindo o JSON que será
         //enviado para a API
@@ -61,22 +99,22 @@
         //Enviando para a API o json 
         //construído na etapa anterior
         fetch('http://127.0.0.1:5000/categoria/inserir',
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: "POST",
-            body: JSON.stringify(json)
-        })
-        .then(function(res){ 
-            res.json()
-                .then(data => {
-                    console.log(data)
-                    window.open("categoria.html");
-                })
-        })
-        .catch(function(res){ console.log(res) })
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                method: "POST",
+                body: JSON.stringify(json)
+            })
+            .then(function (res) {
+                res.json()
+                    .then(data => {
+                        console.log(data)
+                        window.open("categoria.html");
+                    })
+            })
+            .catch(function (res) { console.log(res) })
     }
 </script>
